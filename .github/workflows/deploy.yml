@@ -30,7 +30,7 @@ jobs:
           cat > config.js << 'ENDOFFILE'
           const GROQ_CONFIG = {
             apiKey: "GROQ_KEY_PLACEHOLDER",
-            model: "llama3-8b-8192",
+            model: "llama-3.1-8b-instant",
             endpoint: "https://api.groq.com/openai/v1/chat/completions"
           };
           ENDOFFILE
