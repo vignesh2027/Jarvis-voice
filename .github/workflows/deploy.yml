@@ -27,13 +27,17 @@ jobs:
 
       - name: Inject Groq API key into config.js
         run: |
-          cat > config.js << EOF
+          cat > config.js << 'ENDOFFILE'
           const GROQ_CONFIG = {
-            apiKey: "${{ secrets.GROQ_API_KEY }}",
+            apiKey: "GROQ_KEY_PLACEHOLDER",
             model: "llama3-8b-8192",
             endpoint: "https://api.groq.com/openai/v1/chat/completions"
           };
-          EOF
+          ENDOFFILE
+          sed -i "s|GROQ_KEY_PLACEHOLDER|${{ secrets.GROQ_API_KEY }}|g" config.js
+
+      - name: Allow config.js through gitignore for Pages upload
+        run: sed -i '/config\.js/d' .gitignore
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
