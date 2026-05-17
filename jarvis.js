@@ -185,7 +185,7 @@ const JARVIS = (() => {
     ];
 
     try {
-      if (!window.GROQ_CONFIG || !GROQ_CONFIG.apiKey || GROQ_CONFIG.apiKey.includes('YOUR_GROQ')) {
+      if (typeof GROQ_CONFIG === 'undefined' || !GROQ_CONFIG.apiKey || GROQ_CONFIG.apiKey.includes('YOUR_GROQ')) {
         throw new Error('NO_API_KEY');
       }
 
